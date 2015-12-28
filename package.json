@@ -1,12 +1,10 @@
 {
   "name": "atom-jsfiddle",
   "main": "./lib/atom-jsfiddle",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "An atom package to upload his code to jsFiddle.",
-  "keywords": [
-  ],
+  "keywords": [],
   "activationCommands": {
-    "atom-workspace": "atom-jsfiddle:start",
     "atom-workspace": "atom-jsfiddle:upload"
   },
   "repository": "https://github.com/vermotr/atom-jsfiddle",
