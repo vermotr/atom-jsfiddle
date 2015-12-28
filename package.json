@@ -13,6 +13,9 @@
     "atom": ">=1.0.0 <2.0.0"
   },
   "dependencies": {
-    "touch": "^1.0.0"
+    "touch": "^1.0.0",
+    "request": ">=2.67.0",
+    "json-parser": ">=1.1.0",
+    "open": ">=0.0.5"
   }
 }

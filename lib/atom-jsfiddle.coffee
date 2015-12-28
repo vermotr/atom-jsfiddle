@@ -1,7 +1,8 @@
 {CompositeDisposable} = require 'atom'
 touch = require 'touch'
-{exec} = require('child_process')
-Shell = require('shell')
+request = require 'request'
+parser = require 'json-parser'
+open = require 'open'
 
 module.exports =
   subscriptions: null
@@ -38,13 +39,6 @@ module.exports =
       ret.push encodeURIComponent(d) + '=' + encodeURIComponent(data[d])
     ret.join '&'
 
-  openPath: (filePath) ->
-    process_architecture = process.platform
-    switch process_architecture
-      when 'darwin' then exec ('open "'+filePath+'"')
-      when 'linux' then exec ('xdg-open "'+filePath+'"')
-      when 'win32' then Shell.openExternal('file:///'+filePath)
-
   upload: ->
     console.log 'Upload to jsFiddle'
     formData = {
@@ -61,5 +55,13 @@ module.exports =
           when 'css' then formData.css = item.getText()
           when 'js' then formData.js = item.getText()
 
-    url = 'http://jsfiddle.vermot.eu/index.php?' + @encodeParam formData
-    @openPath url
+    request.post {
+      url: 'http://atomjsfiddle.vermot.eu/library/pure/'
+      formData: formData
+    }, (err, httpResponse, body) ->
+      if err
+        console.error 'Post request failed: ' + err
+      else
+        result = parser.parse(body)
+        console.log result.url
+        open result.url
