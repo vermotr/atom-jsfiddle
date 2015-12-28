@@ -1,0 +1,18 @@
+'menu': [
+  {
+    'label': 'Packages'
+    'submenu': [
+      'label': 'jsFiddle'
+      'submenu': [
+        {
+          'label': 'Start'
+          'command': 'atom-jsfiddle:start'
+        },
+        {
+          'label': 'Upload'
+          'command': 'atom-jsfiddle:upload'
+        }
+      ]
+    ]
+  }
+]
